@@ -288,7 +288,7 @@ const setupRateLimiter = {
       }
     }
 // Дополнительная очистка если Map слишком большой
-    if (setupRateLimiter.attempts.size > 10000) {
+    if (setupRateLimiter.attempts.size > 5000) {
       setupRateLimiter.attempts.clear();
     }
   }, 30_000),  // Очищай чаще - каждые 30 сек вместо 60
