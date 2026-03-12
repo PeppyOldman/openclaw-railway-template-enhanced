@@ -287,7 +287,12 @@ const setupRateLimiter = {
         setupRateLimiter.attempts.delete(ip);
       }
     }
-  }, 60_000),
+// Дополнительная очистка если Map слишком большой
+    if (setupRateLimiter.attempts.size > 10000) {
+      setupRateLimiter.attempts.clear();
+    }
+  }, 30_000),  // Очищай чаще - каждые 30 сек вместо 60
+
 
   isRateLimited(ip) {
     const now = Date.now();
